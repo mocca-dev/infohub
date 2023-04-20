@@ -1,0 +1,16 @@
+.day {
+  margin-top: 20px;
+  font-weight: 300;
+  font-size: 3rem;
+  color: #fff37d;
+  margin-bottom: 8px;
+}
+
+.remaining,
+.reason {
+  opacity: 0.8;
+}
+
+.reason {
+  margin-bottom: 10px;
+}

@@ -3,6 +3,8 @@ import Head from 'next/head';
 // import { Inter } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
 import Card from '@/components/card/card';
+import DollarCard from '@/components/card/dollarCard/dollarCard';
+import HollidayCard from '@/components/card/hollidayCard/hollidayCard';
 
 // const inter = Inter({ subsets: ['latin'] });
 
@@ -16,7 +18,26 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Card />
+        <Card
+          data={{
+            title: 'Dólar Blue',
+            footer: 'Actualizado el 19/04/23 07:01 PM',
+          }}
+        >
+          <DollarCard value="$423" />
+        </Card>
+        <Card
+          data={{
+            title: 'Próximo Feriado',
+            footer: 'Actualizado el 19/04/23 07:01 PM',
+          }}
+        >
+          <HollidayCard
+            day="1Mayo"
+            reason="Feriado Día del Trabajador"
+            remaining="Faltan 11 días"
+          />
+        </Card>
       </main>
     </>
   );

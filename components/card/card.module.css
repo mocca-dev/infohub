@@ -4,19 +4,14 @@
   padding: 40px;
   padding-bottom: 50px;
   text-align: center;
-  min-width: 300px;
+  width: 305px;
+  margin-bottom: 30px;
 }
 
 .cardHeader {
   display: flex;
   justify-content: space-between;
-  font-size: 1.1rem;
-}
-
-.cardValue {
-  margin-top: 20px;
-  font-weight: 300;
-  font-size: 5rem;
+  font-size: 1.2rem;
 }
 
 .cardFooter {
