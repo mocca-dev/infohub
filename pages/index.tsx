@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css';
 import Card from '@/components/card/card';
 import DollarCard from '@/components/card/dollarCard/dollarCard';
 import HollidayCard from '@/components/card/hollidayCard/hollidayCard';
+import Header from '@/components/header/header';
 
 // const inter = Inter({ subsets: ['latin'] });
 
@@ -18,6 +19,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Header />
         <Card
           data={{
             title: 'Dólar Blue',

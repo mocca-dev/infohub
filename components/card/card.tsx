@@ -17,9 +17,9 @@ const Card: FunctionComponent<Props> = ({ children, data }) => {
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <div className={styles.cardTitle}>{data.title}</div>
-        <div className={styles.refreshBtn}>
+        <button className={styles.refreshBtn}>
           <RefreshIcon />
-        </div>
+        </button>
       </div>
       {children}
       <div className={styles.cardFooter}>{data.footer}</div>
