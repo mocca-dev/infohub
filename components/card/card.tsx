@@ -10,14 +10,15 @@ type CardData = {
 type Props = {
   children: any;
   data: CardData;
+  refresh: any;
 };
 
-const Card: FunctionComponent<Props> = ({ children, data }) => {
+const Card: FunctionComponent<Props> = ({ children, data, refresh }) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <div className={styles.cardTitle}>{data.title}</div>
-        <button className={styles.refreshBtn}>
+        <button onClick={refresh} className={styles.refreshBtn}>
           <RefreshIcon />
         </button>
       </div>

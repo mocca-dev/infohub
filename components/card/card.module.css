@@ -19,6 +19,10 @@
   background: none;
 }
 
+.refreshBtn:active {
+  opacity: 0.5;
+}
+
 .cardFooter {
   opacity: 0.4;
 }
