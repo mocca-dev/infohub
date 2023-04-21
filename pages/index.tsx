@@ -45,9 +45,10 @@ const Home = () => {
   });
 
   useEffect(() => {
+    fetchDollarData();
     const intervalId = setInterval(() => {
       fetchDollarData();
-    }, 1000 * 5);
+    }, 1000 * 60);
     return () => clearInterval(intervalId);
   }, []);
 
