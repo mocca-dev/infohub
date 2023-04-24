@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import styles from './HolidayCard.module.css';
+import styles from './holidayCard.module.css';
 
 type Props = {
   day: string;
