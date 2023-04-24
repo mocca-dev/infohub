@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import styles from './hollidayCard.module.css';
+import styles from './HolidayCard.module.css';
 
 type Props = {
   day: string;
@@ -7,7 +7,7 @@ type Props = {
   reason: string;
 };
 
-const HollidayCard: FunctionComponent<Props> = ({ day, left, reason }) => (
+const HolidayCard: FunctionComponent<Props> = ({ day, left, reason }) => (
   <>
     <div className={styles.day}>{day}</div>
     <div className={styles.left}>{left}</div>
@@ -15,4 +15,4 @@ const HollidayCard: FunctionComponent<Props> = ({ day, left, reason }) => (
   </>
 );
 
-export default HollidayCard;
+export default HolidayCard;

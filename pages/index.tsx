@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import Card from '@/components/card/card';
 import DollarCard from '@/components/card/dollarCard/dollarCard';
-import HollidayCard from '@/components/card/hollidayCard/hollidayCard';
+import HolidayCard from '@/components/card/holidayCard/holidayCard';
 import Header from '@/components/header/header';
 import { useEffect, useState } from 'react';
 
@@ -48,7 +48,7 @@ const Home = () => {
     fetchDollarData();
     const intervalId = setInterval(() => {
       fetchDollarData();
-    }, 1000 * 60);
+    }, 1000 * 300);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -83,38 +83,38 @@ const Home = () => {
       </Head>
       <main className={styles.main}>
         <Header />
-        <Card
-          key={dollarCard.id}
-          data={{
-            title: dollarCard.title,
-            footer: dollarCard.footer,
-          }}
-          refresh={fetchDollarData}
-        >
-          {dollarCard.title === '' ? (
-            <div className={styles.loading}>Cargando...</div>
-          ) : (
-            <DollarCard value={dollarCard.data.value} />
-          )}
-        </Card>
-        <Card
-          key={holiDayCard.id}
-          data={{
-            title: holiDayCard.title,
-            footer: holiDayCard.footer,
-          }}
-          refresh={fetchHolidayData}
-        >
-          {holiDayCard.title === '' ? (
-            <div className={styles.loading}>Cargando...</div>
-          ) : (
-            <HollidayCard
-              day={holiDayCard.data.day}
-              reason={holiDayCard.data.reason}
-              left={holiDayCard.data.left}
-            />
-          )}
-        </Card>
+        <div className={styles.cardContainer}>
+          <Card
+            data={{
+              title: dollarCard.title,
+              footer: dollarCard.footer,
+            }}
+            refresh={fetchDollarData}
+          >
+            {dollarCard.title === '' ? (
+              <div className={styles.loading}>Cargando...</div>
+            ) : (
+              <DollarCard value={dollarCard.data.value} />
+            )}
+          </Card>
+          <Card
+            data={{
+              title: holiDayCard.title,
+              footer: holiDayCard.footer,
+            }}
+            refresh={fetchHolidayData}
+          >
+            {holiDayCard.title === '' ? (
+              <div className={styles.loading}>Cargando...</div>
+            ) : (
+              <HolidayCard
+                day={holiDayCard.data.day}
+                reason={holiDayCard.data.reason}
+                left={holiDayCard.data.left}
+              />
+            )}
+          </Card>
+        </div>
       </main>
     </>
   );
