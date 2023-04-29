@@ -22,7 +22,11 @@ const Card: FunctionComponent<Props> = ({ children, data, refresh }) => {
           <RefreshIcon />
         </button>
       </div>
-      {children}
+      {data.title === '' ? (
+        <div className={styles.loading}>Cargando...</div>
+      ) : (
+        <>{children}</>
+      )}
       <div className={styles.cardFooter}>{data.footer}</div>
     </div>
   );

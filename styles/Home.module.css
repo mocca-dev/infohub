@@ -13,13 +13,14 @@
 }
 
 .cardContainer {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 45px;
 }
 
 @media screen and (min-width: 725px) {
   .cardContainer {
-    flex-direction: row;
+    grid-template-columns: repeat(2, 1fr);
+    width: 655px;
   }
 }

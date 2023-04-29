@@ -1,0 +1,16 @@
+.container {
+  text-align: left;
+  padding: 10px 0;
+}
+
+.source {
+  opacity: 0.55;
+  font-size: 0.8rem;
+  margin-bottom: 3px;
+}
+
+.time {
+  opacity: 0.55;
+  font-size: 0.7rem;
+  margin-top: 1px;
+}

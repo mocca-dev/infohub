@@ -5,6 +5,7 @@ import DollarCard from '@/components/card/dollarCard/dollarCard';
 import HolidayCard from '@/components/card/holidayCard/holidayCard';
 import Header from '@/components/header/header';
 import { useEffect, useState } from 'react';
+import BigCard from '@/components/bigCard/bigCard';
 
 type DollarData = {
   value: string;
@@ -14,6 +15,19 @@ type HollidayData = {
   day: string;
   left: string;
   reason: string;
+};
+
+type NewsItem = {
+  description: string;
+  link: string;
+  pubDate: string;
+  guid: { text: string; isPermaLink: string };
+  source: { text: string; url: string };
+  title: string;
+};
+
+type GNewsData = {
+  value: { items: NewsItem[] };
 };
 
 type CardData = {
@@ -29,6 +43,9 @@ interface DollarCardData extends CardData {
 interface HolidayCardData extends CardData {
   data: HollidayData;
 }
+interface GNewsCardData extends CardData {
+  data: GNewsData;
+}
 
 const Home = () => {
   const [dollarCard, setDollarCard] = useState<DollarCardData>({
@@ -40,6 +57,12 @@ const Home = () => {
   const [holiDayCard, setHoliDayCard] = useState<HolidayCardData>({
     id: 0,
     data: { day: '', reason: '', left: '' },
+    footer: '',
+    title: '',
+  });
+  const [gNewsCard, setGNewsCard] = useState<GNewsCardData>({
+    id: 0,
+    data: { value: { items: [] } },
     footer: '',
     title: '',
   });
@@ -58,6 +81,17 @@ const Home = () => {
     // }, 1000 * 5);
     // return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    fetchGoogleNewsData();
+  }, []);
+
+  const fetchGoogleNewsData = async () => {
+    const dollarResp = await fetch('/api/googleNews');
+    const dollarData = await dollarResp.json();
+
+    setGNewsCard(dollarData);
+  };
 
   const fetchDollarData = async () => {
     const dollarResp = await fetch('/api/dollar');
@@ -91,11 +125,7 @@ const Home = () => {
             }}
             refresh={fetchDollarData}
           >
-            {dollarCard.title === '' ? (
-              <div className={styles.loading}>Cargando...</div>
-            ) : (
-              <DollarCard value={dollarCard.data.value} />
-            )}
+            <DollarCard value={dollarCard.data.value} />
           </Card>
           <Card
             data={{
@@ -104,16 +134,20 @@ const Home = () => {
             }}
             refresh={fetchHolidayData}
           >
-            {holiDayCard.title === '' ? (
-              <div className={styles.loading}>Cargando...</div>
-            ) : (
-              <HolidayCard
-                day={holiDayCard.data.day}
-                reason={holiDayCard.data.reason}
-                left={holiDayCard.data.left}
-              />
-            )}
+            <HolidayCard
+              day={holiDayCard.data.day}
+              reason={holiDayCard.data.reason}
+              left={holiDayCard.data.left}
+            />
           </Card>
+          <BigCard
+            data={{
+              title: gNewsCard.title,
+              footer: gNewsCard.footer,
+              value: gNewsCard.data.value,
+            }}
+            refresh={fetchGoogleNewsData}
+          ></BigCard>
         </div>
       </main>
     </>
