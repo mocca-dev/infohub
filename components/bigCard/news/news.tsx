@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import styles from './news.module.css';
 
 type Props = {
@@ -12,12 +12,21 @@ type Props = {
 };
 
 const News: FunctionComponent<Props> = ({ link, pubDate, source, title }) => {
-  const calcTime = () => {
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
     const pub = new Date(pubDate);
     const now = new Date();
     const res = now.getTime() - pub.getTime();
-    return Math.floor(res / 1000 / 60 / 60);
-  };
+    const time = Math.floor(res / 1000 / 60 / 60);
+    if (time < 24) {
+      setTime(`Hace ${time} hora${time % 2 === 0 ? 's' : ''}`);
+    } else {
+      const day = Math.floor(time / 24);
+      setTime(`Hace ${day} día${day % 2 === 0 ? 's' : ''}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -29,7 +38,7 @@ const News: FunctionComponent<Props> = ({ link, pubDate, source, title }) => {
       <Link href={link} rel="noopener noreferrer" target="_blank">
         {title}
       </Link>
-      <div className={styles.time}>Hace {calcTime()} horas</div>
+      <div className={styles.time}>{time}</div>
     </div>
   );
 };

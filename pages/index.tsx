@@ -113,7 +113,7 @@ const Home = () => {
         <title>Infohub</title>
         <meta
           name="description"
-          content="Recibí información actualizada del dolar y más..."
+          content="Recibí información actualizada del dólar y más..."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
