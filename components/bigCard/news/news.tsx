@@ -20,10 +20,10 @@ const News: FunctionComponent<Props> = ({ link, pubDate, source, title }) => {
     const res = now.getTime() - pub.getTime();
     const time = Math.floor(res / 1000 / 60 / 60);
     if (time < 24) {
-      setTime(`Hace ${time} hora${time % 2 === 0 ? 's' : ''}`);
+      setTime(`Hace ${time} hora${time > 1 ? 's' : ''}`);
     } else {
       const day = Math.floor(time / 24);
-      setTime(`Hace ${day} día${day % 2 === 0 ? 's' : ''}`);
+      setTime(`Hace ${day} día${day > 1 ? 's' : ''}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
