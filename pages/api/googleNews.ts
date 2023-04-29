@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 let googleNewsAPI = require('google-news-json');
 
@@ -27,7 +26,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<CardData>) => {
 
   res.status(200).json({
     id: 2,
-    title: 'Google News',
+    title: 'Google News - Argentina',
     footer: '',
     data: { value: { ...news, items: news.items.slice(0, 10) } },
   });
