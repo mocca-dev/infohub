@@ -22,6 +22,10 @@
   font-size: 1.2rem;
 }
 
+.cardTitle {
+  text-align: left;
+}
+
 .cardBody {
   margin-top: 15px;
   max-height: 435px;
