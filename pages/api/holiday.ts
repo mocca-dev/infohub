@@ -6,7 +6,7 @@ enum CardType {
   Holiday = 2,
 }
 
-type HollidayData = {
+type HolidayData = {
   day: string;
   left: string;
   reason: string;
@@ -16,29 +16,34 @@ type CardData = {
   id: number;
   title: string;
   footer: string;
-  data: HollidayData;
+  data: HolidayData;
   type: number;
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<CardData>) => {
   const HTMLParser = require('node-html-parser');
-  const hollidayResp = await fetch('https://www.lanacion.com.ar/feriados/');
-  const holliday = await hollidayResp.text();
+  let holiday;
+  try {
+    const holidayResp = await fetch('https://www.lanacion.com.ar/feriados/');
+    holiday = await holidayResp.text();
+  } catch (error) {
+    console.error('ERROR', error);
+  }
 
-  const hollidayRoot = HTMLParser.parse(holliday);
-  const hollidayNumber = hollidayRoot
+  const holidayRoot = HTMLParser.parse(holiday);
+  const holidayNumber = holidayRoot
     .querySelector('.com-text.sueca.--font-bold.--threexl')
     .innerHTML.toString();
-  const hollidayLeft = hollidayRoot
+  const holidayLeft = holidayRoot
     .querySelector('.com-text.--l')
     .innerHTML.toString()
     .replace('<strong>', '')
     .replace('</strong>', '')
     .replace(' para el próximo feriado', '');
-  const hollidayMonth = hollidayRoot
+  const holidayMonth = holidayRoot
     .querySelector('.com-text.--font-bold.--m')
     .innerHTML.toString();
-  const hollidayReason = hollidayRoot
+  const holidayReason = holidayRoot
     .querySelector('.com-text.--s')
     .innerHTML.toString();
 
@@ -47,9 +52,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<CardData>) => {
     title: 'Próximo Feriado',
     footer: '',
     data: {
-      day: `${hollidayNumber}  ${hollidayMonth}`,
-      left: hollidayLeft,
-      reason: hollidayReason,
+      day: `${holidayNumber}  ${holidayMonth}`,
+      left: holidayLeft,
+      reason: holidayReason,
     },
     type: CardType.Holiday,
   });

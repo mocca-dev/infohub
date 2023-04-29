@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { FunctionComponent, useEffect, useState } from 'react';
 import styles from './news.module.css';
@@ -31,6 +32,14 @@ const News: FunctionComponent<Props> = ({ link, pubDate, source, title }) => {
   return (
     <div className={styles.container}>
       <div className={styles.source}>
+        <img
+          src={source.url + '/favicon.ico'}
+          alt=""
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.className = styles.hidden;
+          }}
+        />
         <Link href={source.url} rel="noopener noreferrer" target="_blank">
           {source.text}
         </Link>

@@ -24,11 +24,18 @@ type CardData = {
 const handler = async (req: NextApiRequest, res: NextApiResponse<CardData>) => {
   let news = await googleNewsAPI.getNews(googleNewsAPI.TOP_NEWS, null, 'es-AR');
 
+  const latestSortedNews = news.items
+    .slice(0, 10)
+    .sort(
+      (a: NewsItem, b: NewsItem) =>
+        new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+    );
+
   res.status(200).json({
     id: 2,
     title: 'Google News - Argentina',
     footer: '',
-    data: { value: { ...news, items: news.items.slice(0, 10) } },
+    data: { value: { ...news, items: latestSortedNews } },
   });
 };
 
