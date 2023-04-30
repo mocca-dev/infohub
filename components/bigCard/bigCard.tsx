@@ -6,30 +6,31 @@ import { GNewsCardData } from '@/types/interfaces';
 import { NewsItem } from '@/types/types';
 
 type Props = {
-  card: GNewsCardData;
+  card: GNewsCardData | undefined;
   refresh: any;
+  isLoading: boolean;
 };
 
-const BigCard: FunctionComponent<Props> = ({ card, refresh }) => (
+const BigCard: FunctionComponent<Props> = ({ card, refresh, isLoading }) => (
   <div className={styles.card}>
     <div className={styles.cardHeader}>
-      <div className={styles.cardTitle}>{card.title}</div>
+      <div className={styles.cardTitle}>{card?.title}</div>
       <button onClick={refresh} className={styles.refreshBtn}>
         <RefreshIcon />
       </button>
     </div>
     <div className={styles.cardBody}>
-      {card.title === '' ? (
+      {isLoading ? (
         <div className={styles.loading}>Cargando...</div>
       ) : (
         <>
-          {card.data.value?.items.map((news: NewsItem) => (
+          {card?.data.value?.items.map((news: NewsItem) => (
             <News key={news.guid.text} {...news} />
           ))}
         </>
       )}
     </div>
-    <div className={styles.cardFooter}>{card.footer}</div>
+    <div className={styles.cardFooter}>{card?.footer}</div>
   </div>
 );
 

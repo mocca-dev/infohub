@@ -1,11 +1,11 @@
 export type DollarData = {
-  value: string;
+  value: string | undefined;
 };
 
 export type HolidayData = {
-  day: string;
-  left: string;
-  reason: string;
+  day: string | undefined;
+  left: string | undefined;
+  reason: string | undefined;
 };
 
 export type NewsItem = {
@@ -29,6 +29,6 @@ export type CardData = {
 };
 
 export type CardShellData = {
-  title: string;
-  footer: string;
+  title: string | undefined;
+  footer: string | undefined;
 };

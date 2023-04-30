@@ -1,31 +1,35 @@
 import styles from './card.module.css';
 import RefreshIcon from '../icons/refresh';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 import { CardShellData } from '@/types/types';
 
 type Props = {
-  children: any;
+  children: ReactElement;
   data: CardShellData;
   refresh: any;
+  isLoading: boolean;
 };
 
-const Card: FunctionComponent<Props> = ({ children, data, refresh }) => {
-  return (
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <div className={styles.cardTitle}>{data.title}</div>
-        <button onClick={refresh} className={styles.refreshBtn}>
-          <RefreshIcon />
-        </button>
-      </div>
-      {data.title === '' ? (
-        <div className={styles.loading}>Cargando...</div>
-      ) : (
-        <>{children}</>
-      )}
-      <div className={styles.cardFooter}>{data.footer}</div>
+const Card: FunctionComponent<Props> = ({
+  children,
+  data,
+  refresh,
+  isLoading,
+}) => (
+  <div className={styles.card}>
+    <div className={styles.cardHeader}>
+      <div className={styles.cardTitle}>{data.title}</div>
+      <button onClick={refresh} className={styles.refreshBtn}>
+        <RefreshIcon />
+      </button>
     </div>
-  );
-};
+    {isLoading ? (
+      <div className={styles.loading}>Cargando...</div>
+    ) : (
+      <>{children}</>
+    )}
+    <div className={styles.cardFooter}>{data.footer}</div>
+  </div>
+);
 
 export default Card;
