@@ -1,11 +1,8 @@
 import { FunctionComponent } from 'react';
 import styles from './dollarCard.module.css';
+import { DollarData } from '@/types/types';
 
-type Props = {
-  value: string;
-};
-
-const DollarCard: FunctionComponent<Props> = ({ value }) => (
+const DollarCard: FunctionComponent<DollarData> = ({ value }) => (
   <div className={styles.cardValue}>{value}</div>
 );
 

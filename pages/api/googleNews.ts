@@ -1,27 +1,12 @@
+import { GNewsCardData } from '@/types/interfaces';
+import { NewsItem } from '@/types/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
 let googleNewsAPI = require('google-news-json');
 
-type NewsItem = {
-  description: string;
-  link: string;
-  pubDate: string;
-  guid: { text: string; isPermaLink: string };
-  source: { text: string; url: string };
-  title: string;
-};
-
-type GNewsData = {
-  value: { items: NewsItem[] };
-};
-
-type CardData = {
-  id: number;
-  title: string;
-  footer: string;
-  data: GNewsData;
-};
-
-const handler = async (req: NextApiRequest, res: NextApiResponse<CardData>) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<GNewsCardData>
+) => {
   let news = await googleNewsAPI.getNews(googleNewsAPI.TOP_NEWS, null, 'es-AR');
 
   const latestSortedNews = news.items

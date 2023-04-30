@@ -1,26 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { HolidayCardData } from '@/types/interfaces';
 
-enum CardType {
-  Dollar = 1,
-  Holiday = 2,
-}
-
-type HolidayData = {
-  day: string;
-  left: string;
-  reason: string;
-};
-
-type CardData = {
-  id: number;
-  title: string;
-  footer: string;
-  data: HolidayData;
-  type: number;
-};
-
-const handler = async (req: NextApiRequest, res: NextApiResponse<CardData>) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<HolidayCardData>
+) => {
   const HTMLParser = require('node-html-parser');
   let holiday;
   try {
@@ -56,7 +41,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<CardData>) => {
       left: holidayLeft,
       reason: holidayReason,
     },
-    type: CardType.Holiday,
   });
 };
 

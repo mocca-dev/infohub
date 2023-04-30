@@ -2,47 +2,34 @@ import styles from './bigCard.module.css';
 import RefreshIcon from '../icons/refresh';
 import { FunctionComponent } from 'react';
 import News from './news/news';
-
-type NewsItem = {
-  description: string;
-  link: string;
-  pubDate: string;
-  guid: { text: string; isPermaLink: string };
-  source: { text: string; url: string };
-  title: string;
-};
-
-type GNewsData = {
-  title: string;
-  footer: string;
-  value: { items: NewsItem[] };
-};
+import { GNewsCardData } from '@/types/interfaces';
+import { NewsItem } from '@/types/types';
 
 type Props = {
-  data: GNewsData;
+  card: GNewsCardData;
   refresh: any;
 };
 
-const BigCard: FunctionComponent<Props> = ({ data, refresh }) => (
+const BigCard: FunctionComponent<Props> = ({ card, refresh }) => (
   <div className={styles.card}>
     <div className={styles.cardHeader}>
-      <div className={styles.cardTitle}>{data.title}</div>
+      <div className={styles.cardTitle}>{card.title}</div>
       <button onClick={refresh} className={styles.refreshBtn}>
         <RefreshIcon />
       </button>
     </div>
     <div className={styles.cardBody}>
-      {data.title === '' ? (
+      {card.title === '' ? (
         <div className={styles.loading}>Cargando...</div>
       ) : (
         <>
-          {data.value?.items.map((news) => (
+          {card.data.value?.items.map((news: NewsItem) => (
             <News key={news.guid.text} {...news} />
           ))}
         </>
       )}
     </div>
-    <div className={styles.cardFooter}>{data.footer}</div>
+    <div className={styles.cardFooter}>{card.footer}</div>
   </div>
 );
 

@@ -1,15 +1,11 @@
 import styles from './card.module.css';
 import RefreshIcon from '../icons/refresh';
 import { FunctionComponent } from 'react';
-
-type CardData = {
-  title: string;
-  footer: string;
-};
+import { CardShellData } from '@/types/types';
 
 type Props = {
   children: any;
-  data: CardData;
+  data: CardShellData;
   refresh: any;
 };
 

@@ -6,46 +6,11 @@ import HolidayCard from '@/components/card/holidayCard/holidayCard';
 import Header from '@/components/header/header';
 import { useEffect, useState } from 'react';
 import BigCard from '@/components/bigCard/bigCard';
-
-type DollarData = {
-  value: string;
-};
-
-type HollidayData = {
-  day: string;
-  left: string;
-  reason: string;
-};
-
-type NewsItem = {
-  description: string;
-  link: string;
-  pubDate: string;
-  guid: { text: string; isPermaLink: string };
-  source: { text: string; url: string };
-  title: string;
-};
-
-type GNewsData = {
-  value: { items: NewsItem[] };
-};
-
-type CardData = {
-  id: number;
-  title: string;
-  footer: string;
-};
-
-interface DollarCardData extends CardData {
-  data: DollarData;
-}
-
-interface HolidayCardData extends CardData {
-  data: HollidayData;
-}
-interface GNewsCardData extends CardData {
-  data: GNewsData;
-}
+import {
+  DollarCardData,
+  GNewsCardData,
+  HolidayCardData,
+} from '@/types/interfaces';
 
 const Home = () => {
   const [dollarCard, setDollarCard] = useState<DollarCardData>({
@@ -143,14 +108,7 @@ const Home = () => {
               left={holiDayCard.data.left}
             />
           </Card>
-          <BigCard
-            data={{
-              title: gNewsCard.title,
-              footer: gNewsCard.footer,
-              value: gNewsCard.data.value,
-            }}
-            refresh={fetchGoogleNewsData}
-          ></BigCard>
+          <BigCard card={gNewsCard} refresh={fetchGoogleNewsData}></BigCard>
         </div>
       </main>
     </>

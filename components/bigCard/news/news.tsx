@@ -2,17 +2,14 @@
 import Link from 'next/link';
 import { FunctionComponent, useEffect, useState } from 'react';
 import styles from './news.module.css';
+import { NewsItem } from '@/types/types';
 
-type Props = {
-  description: string;
-  link: string;
-  pubDate: string;
-  guid: { text: string; isPermaLink: string };
-  source: { text: string; url: string };
-  title: string;
-};
-
-const News: FunctionComponent<Props> = ({ link, pubDate, source, title }) => {
+const News: FunctionComponent<NewsItem> = ({
+  link,
+  pubDate,
+  source,
+  title,
+}) => {
   const [time, setTime] = useState('');
 
   useEffect(() => {
