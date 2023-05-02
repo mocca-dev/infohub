@@ -1,0 +1,9 @@
+.shareBtn {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.shareBtn:active {
+  opacity: 0.3;
+}

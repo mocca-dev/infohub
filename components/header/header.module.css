@@ -1,8 +1,16 @@
 .container {
+  position: fixed;
   padding: 20px 30px;
-  display: flex;
-  position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  z-index: 1;
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(30, 30, 30, 0.25);
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 }

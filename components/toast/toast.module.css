@@ -1,0 +1,10 @@
+.container {
+  position: fixed;
+  bottom: 20px;
+  left: 50vw;
+  padding: 10px 30px;
+  font-size: 0.9rem;
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+}

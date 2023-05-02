@@ -13,7 +13,7 @@ export default function useFetch<T>(
     if (autoRefresh) {
       const intervalId = setInterval(() => {
         setIsLoading(true);
-        fetchFromAPI(url, setCard);
+        fetchFromAPI(url, setCard, setIsLoading);
       }, 1000 * 300);
       return () => clearInterval(intervalId);
     }

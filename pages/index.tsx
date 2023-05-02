@@ -11,8 +11,11 @@ import {
   HolidayCardData,
 } from '@/types/interfaces';
 import useFetch from '@/hooks/useFetch';
+import Toast from '@/components/toast/toast';
+import { useState } from 'react';
 
 const Home = () => {
+  const [showToast, setShowToast] = useState(false);
   const [dollarCard, isDollarLoading, refreshDollar] = useFetch<DollarCardData>(
     '/api/dollar',
     true
@@ -35,8 +38,13 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Toast
+        text="Copiado!"
+        show={showToast}
+        resetShow={() => setShowToast(false)}
+      />
       <main className={styles.main}>
-        <Header />
+        <Header onShareSucces={setShowToast} />
         <div className={styles.cardContainer}>
           <Card
             data={{
