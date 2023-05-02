@@ -7,6 +7,10 @@
   width: 305px;
 }
 
+.loading {
+  padding: 50px 0;
+}
+
 .cardHeader {
   display: flex;
   justify-content: space-between;

@@ -1,5 +1,32 @@
 .cardValue {
+  display: flex;
+  align-items: center;
   margin-top: 20px;
   font-weight: 300;
   font-size: 5rem;
+}
+
+.white {
+  color: white;
+}
+
+.green {
+  color: #00d22e;
+}
+
+.red {
+  color: red;
+}
+
+.white svg {
+  fill: white;
+}
+
+.green svg {
+  fill: #00d22e;
+}
+
+.red svg {
+  fill: red;
+  transform: rotate(180deg);
 }

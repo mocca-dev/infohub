@@ -8,10 +8,6 @@
   color: white;
 }
 
-.loading {
-  padding: 20px 0;
-}
-
 .cardContainer {
   display: grid;
   grid-template-columns: 1fr;
