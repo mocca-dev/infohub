@@ -7,10 +7,14 @@ type Props = {
 
 const Weather: FunctionComponent<Props> = ({ data }) => {
   return (
-    <span className={styles.weatherContainer}>
-      <span>Bahía Blanca,</span> {data?.temperature}°C
-      {/* {weather?.data.status} */}
-    </span>
+    <>
+      {data ? (
+        <span className={styles.weatherContainer}>
+          <span>Bahía Blanca,</span> {data?.temperature}°C
+          {/* {weather?.data.status} */}
+        </span>
+      ) : null}
+    </>
   );
 };
 
