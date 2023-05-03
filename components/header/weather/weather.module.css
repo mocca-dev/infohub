@@ -1,0 +1,18 @@
+.weatherContainer {
+  margin-right: 20px;
+  font-size: 1.4rem;
+}
+
+.weatherContainer span {
+  display: none;
+}
+
+@media screen and (min-width: 725px) {
+  .weatherContainer span {
+    display: inline;
+  }
+
+  .weatherContainer {
+    font-size: 1rem;
+  }
+}

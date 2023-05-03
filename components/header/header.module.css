@@ -14,3 +14,8 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+}

@@ -9,6 +9,7 @@ import {
   DollarCardData,
   GNewsCardData,
   HolidayCardData,
+  WeatherCardData,
 } from '@/types/interfaces';
 import useFetch from '@/hooks/useFetch';
 import Toast from '@/components/toast/toast';
@@ -18,14 +19,13 @@ const Home = () => {
   const [showToast, setShowToast] = useState(false);
   const [dollarCard, isDollarLoading, refreshDollar] = useFetch<DollarCardData>(
     '/api/dollar',
-    true
+    300
   );
   const [holiDayCard, isHolidayLoading, refreshHoliday] =
-    useFetch<HolidayCardData>('/api/holiday', false);
-  const [gNewsCard, isGNewsLoading, refreshGNews] = useFetch<GNewsCardData>(
-    '/api/googleNews',
-    false
-  );
+    useFetch<HolidayCardData>('/api/holiday');
+  const [gNewsCard, isGNewsLoading, refreshGNews] =
+    useFetch<GNewsCardData>('/api/googleNews');
+  const [weatherCard] = useFetch<WeatherCardData>('/api/weather', 900);
 
   return (
     <>
@@ -44,7 +44,7 @@ const Home = () => {
         resetShow={() => setShowToast(false)}
       />
       <main className={styles.main}>
-        <Header onShareSucces={setShowToast} />
+        <Header onShareSucces={setShowToast} weather={weatherCard} />
         <div className={styles.cardContainer}>
           <Card
             data={{

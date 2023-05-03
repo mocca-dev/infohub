@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react';
 
 export default function useFetch<T>(
   url: string,
-  autoRefresh: boolean
-): [T | undefined, boolean, any] {
+  delay?: number
+): [T | any, boolean, any] {
   const [card, setCard] = useState<T>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
     fetchFromAPI(url, setCard, setIsLoading);
-    if (autoRefresh) {
+    if (delay) {
       const intervalId = setInterval(() => {
         setIsLoading(true);
         fetchFromAPI(url, setCard, setIsLoading);
-      }, 1000 * 300);
+      }, 1000 * delay);
       return () => clearInterval(intervalId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

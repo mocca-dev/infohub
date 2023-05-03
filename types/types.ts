@@ -17,6 +17,11 @@ export type NewsItem = {
   title: string;
 };
 
+export type WeatherData = {
+  temperature: string;
+  status: string;
+};
+
 export type GNewsData = {
   value: { items: NewsItem[] };
 };
@@ -25,7 +30,7 @@ export type CardData = {
   id: number;
   title: string;
   footer: string;
-  data: DollarData | HolidayData | GNewsData;
+  data: DollarData | HolidayData | GNewsData | WeatherData;
 };
 
 export type CardShellData = {
