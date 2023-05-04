@@ -6,6 +6,14 @@
   font-size: 5rem;
 }
 
+.left {
+  justify-content: space-between;
+}
+
+.center {
+  justify-content: center;
+}
+
 .white {
   color: white;
 }

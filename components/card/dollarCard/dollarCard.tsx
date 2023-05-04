@@ -31,7 +31,11 @@ const DollarCard: FunctionComponent<DollarData> = ({ value }) => {
   }, []);
 
   return (
-    <div className={styles.cardValue + ' ' + colorClass}>
+    <div
+      className={`${styles.cardValue} ${colorClass} ${
+        isEqual ? styles.center : styles.left
+      }`}
+    >
       <span>{value}</span>
       {isEqual ? null : <Arrow />}
     </div>
