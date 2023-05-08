@@ -74,6 +74,7 @@ const Home = () => {
             card={gNewsCard}
             refresh={refreshGNews}
             isLoading={isGNewsLoading}
+            onShareSucces={setShowToast}
           ></BigCard>
         </div>
       </main>

@@ -4,10 +4,11 @@ import IOSShare from '../icons/iosShare';
 import AndroidShare from '../icons/androidShare';
 
 type Props = {
-  onShareSucces: Function;
+  onShareSucces?: Function;
+  url: string;
 };
 
-const ShareBtn: FunctionComponent<Props> = ({ onShareSucces }) => {
+const ShareBtn: FunctionComponent<Props> = ({ onShareSucces, url }) => {
   const [isChrome, setIsChrome] = useState(false);
 
   useEffect(() => {
@@ -15,7 +16,6 @@ const ShareBtn: FunctionComponent<Props> = ({ onShareSucces }) => {
   }, []);
 
   const handleShare = () => {
-    const url = 'https://infohub.vercel.app';
     if (navigator.share) {
       navigator
         .share({
@@ -25,7 +25,7 @@ const ShareBtn: FunctionComponent<Props> = ({ onShareSucces }) => {
         })
         .then(() => console.log('Successful share'))
         .catch((error) => console.log('Error sharing', error));
-    } else if (navigator.clipboard?.writeText) {
+    } else if (onShareSucces && navigator.clipboard?.writeText) {
       navigator.clipboard.writeText(url);
       onShareSucces(true);
     }

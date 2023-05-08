@@ -16,7 +16,10 @@ const Header: FunctionComponent<Props> = ({ onShareSucces, weather }) => (
       <Logo />
       <span className={styles.rightContainer}>
         <Weather data={weather?.data} />
-        <ShareBtn onShareSucces={onShareSucces} />
+        <ShareBtn
+          url="https://infohub.vercel.app"
+          onShareSucces={onShareSucces}
+        />
       </span>
     </div>
   </header>

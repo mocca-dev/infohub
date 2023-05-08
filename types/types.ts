@@ -1,3 +1,5 @@
+import { MouseEventHandler } from 'react';
+
 export type DollarData = {
   value: string | undefined;
 };
@@ -36,4 +38,9 @@ export type CardData = {
 export type CardShellData = {
   title: string | undefined;
   footer: string | undefined;
+};
+
+export type Option = {
+  label: string;
+  action: MouseEventHandler<HTMLButtonElement>;
 };

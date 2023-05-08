@@ -9,9 +9,15 @@ type Props = {
   card: GNewsCardData | undefined;
   refresh: any;
   isLoading: boolean;
+  onShareSucces: any;
 };
 
-const BigCard: FunctionComponent<Props> = ({ card, refresh, isLoading }) => (
+const BigCard: FunctionComponent<Props> = ({
+  card,
+  refresh,
+  isLoading,
+  onShareSucces,
+}) => (
   <div className={styles.card}>
     <div className={styles.cardHeader}>
       <div className={styles.cardTitle}>{card?.title}</div>
@@ -25,7 +31,11 @@ const BigCard: FunctionComponent<Props> = ({ card, refresh, isLoading }) => (
       ) : (
         <>
           {card?.data.value?.items.map((news: NewsItem) => (
-            <News key={news.guid.text} {...news} />
+            <News
+              key={news.guid.text}
+              news={news}
+              onShareSucces={onShareSucces}
+            />
           ))}
         </>
       )}
