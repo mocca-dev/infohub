@@ -19,8 +19,8 @@ const News: FunctionComponent<Props> = ({ news, onShareSucces }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuOptions: Option[] = [
-    { label: 'Compartir', action: () => onShareCopy(false) },
-    { label: 'Copiar', action: () => onShareCopy(true) },
+    { label: 'Compartir', action: () => onShareCopy(true) },
+    { label: 'Copiar', action: () => onShareCopy(false) },
     { label: 'Abrir', action: () => window.open(link, '_blank') },
   ];
 
