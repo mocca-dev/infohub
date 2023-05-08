@@ -6,12 +6,13 @@
   margin-left: 0px;
   margin-top: 10px;
   z-index: 10;
+  /* font-size: 0.8rem; */
   /* backdrop-filter: saturate(180%) blur(20px); */
   /* background-color: rgba(0, 0, 0, 0.25); */
 }
 
 .optionBtn {
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   color: white;
   padding: 0 15px;
   background: none;
@@ -26,5 +27,9 @@
 @media screen and (min-width: 725px) {
   .modalContainer {
     margin-left: 150px;
+  }
+
+  .optionBtn {
+    font-size: 1rem;
   }
 }
