@@ -1,7 +1,7 @@
 .container {
   position: fixed;
   bottom: 20px;
-  left: 50vw;
+  left: calc(50vw - 62px);
   padding: 10px 30px;
   font-size: 0.9rem;
   backdrop-filter: saturate(180%) blur(20px);
