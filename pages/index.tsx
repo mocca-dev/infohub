@@ -54,7 +54,11 @@ const Home = () => {
             isLoading={isDollarLoading}
             refresh={refreshDollar}
           >
-            <DollarCard value={dollarCard?.data?.value} />
+            <DollarCard
+              value={dollarCard?.data?.value}
+              official={dollarCard?.data?.official}
+              mep={dollarCard?.data?.mep}
+            />
           </Card>
           <Card
             data={{

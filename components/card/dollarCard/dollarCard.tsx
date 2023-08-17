@@ -3,7 +3,11 @@ import styles from './dollarCard.module.css';
 import { DollarData } from '@/types/types';
 import Arrow from '@/components/icons/arrow';
 
-const DollarCard: FunctionComponent<DollarData> = ({ value }) => {
+const DollarCard: FunctionComponent<DollarData> = ({
+  value,
+  official,
+  mep,
+}) => {
   const [colorClass, setColorClass] = useState(styles.white);
   const [isEqual, setIsEqual] = useState(false);
 
@@ -36,8 +40,12 @@ const DollarCard: FunctionComponent<DollarData> = ({ value }) => {
         isEqual ? styles.center : styles.left
       }`}
     >
-      <span>{value}</span>
-      {isEqual ? null : <Arrow />}
+      <div className={styles.blueValue}>
+        <span>{value}</span>
+        {isEqual ? null : <Arrow />}
+      </div>
+      <div className={styles.smallSizeValue}>Dólar Oficial: ${official}</div>
+      <div className={styles.smallSizeValue}>Dólar Mep: ${mep}</div>
     </div>
   );
 };

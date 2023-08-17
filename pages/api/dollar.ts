@@ -2,6 +2,20 @@
 import { DollarCardData } from '@/types/interfaces';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+const getDollarValueFromEmbedded = async (url: string) => {
+  const HTMLParser = require('node-html-parser');
+  const dolarResp = await fetch(url);
+  const dolar = await dolarResp.text();
+
+  const dolarRoot = HTMLParser.parse(dolar);
+  const dolarTile = dolarRoot.querySelector('.data__valores');
+  const dolarContainer = dolarTile.querySelectorAll('p')[1];
+
+  const spanElement = dolarContainer.querySelector('span');
+
+  return dolarContainer.removeChild(spanElement).innerHTML.toString();
+};
+
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<DollarCardData>
@@ -22,11 +36,18 @@ const handler = async (
     .querySelector('span')
     .innerHTML.toString();
 
+  const officialValue = await getDollarValueFromEmbedded(
+    'https://dolarhoy.com/i/cotizaciones/dolar-bancos-y-casas-de-cambio'
+  );
+  const mepValue = await getDollarValueFromEmbedded(
+    'https://dolarhoy.com/i/cotizaciones/dolar-mep'
+  );
+
   res.status(200).json({
     id: 0,
     title: 'Dólar Blue',
     footer: dolarBlueUpdateDate,
-    data: { value: dolarBlue },
+    data: { value: dolarBlue, official: officialValue, mep: mepValue },
   });
 };
 

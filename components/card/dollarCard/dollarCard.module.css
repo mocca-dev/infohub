@@ -1,9 +1,11 @@
-.cardValue {
-  display: flex;
-  align-items: center;
+.blueValue {
   margin-top: 20px;
   font-weight: 300;
   font-size: 5rem;
+}
+
+.smallSizeValue {
+  line-height: 20px;
 }
 
 .left {

@@ -2,6 +2,8 @@ import { MouseEventHandler } from 'react';
 
 export type DollarData = {
   value: string | undefined;
+  official: string | undefined;
+  mep: string | undefined;
 };
 
 export type HolidayData = {
