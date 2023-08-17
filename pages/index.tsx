@@ -68,6 +68,8 @@ const Home = () => {
               day={holiDayCard?.data.day}
               reason={holiDayCard?.data.reason}
               left={holiDayCard?.data.left}
+              isWeekend={holiDayCard?.data.isWeekend}
+              dayName={holiDayCard?.data.dayName}
             />
           </Card>
           <BigCard

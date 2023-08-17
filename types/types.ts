@@ -8,6 +8,8 @@ export type HolidayData = {
   day: string | undefined;
   left: string | undefined;
   reason: string | undefined;
+  isWeekend: boolean | undefined;
+  dayName: string | undefined;
 };
 
 export type NewsItem = {

@@ -7,8 +7,19 @@
 }
 
 .left,
+.dayName,
 .reason {
   opacity: 0.8;
+}
+
+.dayName {
+  color: #00d22e;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.isWeekend {
+  color: red;
 }
 
 .reason {

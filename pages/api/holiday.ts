@@ -2,6 +2,48 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { HolidayCardData } from '@/types/interfaces';
 
+enum MonthNumber {
+  Enero = 1,
+  Febrero = 2,
+  Marzo = 3,
+  Abril = 4,
+  Mayo = 5,
+  Junio = 6,
+  Julio = 7,
+  Agosto = 8,
+  Septiembre = 9,
+  Octubre = 10,
+  Noviembre = 11,
+  Diciembre = 12,
+}
+
+const DayName = [
+  'Domingo',
+  'Lunes',
+  'Martes',
+  'Miércoles',
+  'Jueves',
+  'Viernes',
+  'Sábado',
+];
+
+const getDayNumber = (date: string) => {
+  const now = new Date();
+  const fullDate = new Date(`${now.getFullYear()}-${date}`);
+  return fullDate.getDay();
+};
+
+const isWeekend = (date: string) => {
+  const day = getDayNumber(date);
+  if (day === 0 || day === 6) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const getDayName = (date: string) => DayName[getDayNumber(date)];
+
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<HolidayCardData>
@@ -40,6 +82,8 @@ const handler = async (
       day: `${holidayNumber}  ${holidayMonth}`,
       left: holidayLeft,
       reason: holidayReason,
+      isWeekend: isWeekend(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
+      dayName: getDayName(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
     },
   });
 };
