@@ -12,7 +12,8 @@ const handler = async (
   const weather = await weatherResp.text();
   const weatherRoot = HTMLParser.parse(weather);
 
-  const weatherDiv = weatherRoot.querySelector('.datos-estado-actual');
+  const weatherDiv = weatherRoot.querySelector('#estado-actual');
+
   const status = weatherDiv
     .querySelector('.descripcion')
     .innerHTML.toString()
@@ -24,11 +25,14 @@ const handler = async (
     .innerHTML.toString()
     .replace('&deg;', '');
 
+  const icon = weatherDiv.querySelector('.temperatura').querySelector('img')
+    ._attrs.src;
+
   res.status(200).json({
     id: 3,
     title: 'Weather - Bahía Blanca',
     footer: '',
-    data: { temperature, status },
+    data: { temperature, status, icon },
   });
 };
 

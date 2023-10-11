@@ -26,6 +26,7 @@ export type NewsItem = {
 export type WeatherData = {
   temperature: string;
   status: string;
+  icon: string;
 };
 
 export type GNewsData = {
