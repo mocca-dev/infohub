@@ -79,7 +79,8 @@ const handler = async (
     title: 'Próximo Feriado',
     footer: '',
     data: {
-      day: `${holidayNumber}  ${holidayMonth}`,
+      day: holidayNumber,
+      month: holidayMonth,
       left: holidayLeft,
       reason: holidayReason,
       isWeekend: isWeekend(`${MonthNumber[holidayMonth]}-${holidayNumber}`),

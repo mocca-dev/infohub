@@ -8,6 +8,7 @@ export type DollarData = {
 
 export type HolidayData = {
   day: string | undefined;
+  month: string | undefined;
   left: string | undefined;
   reason: string | undefined;
   isWeekend: boolean | undefined;

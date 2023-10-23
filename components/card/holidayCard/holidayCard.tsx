@@ -4,13 +4,16 @@ import { HolidayData } from '@/types/types';
 
 const HolidayCard: FunctionComponent<HolidayData> = ({
   day,
+  month,
   left,
   reason,
   isWeekend,
   dayName,
 }) => (
   <>
-    <div className={styles.day}>{day}</div>
+    <div className={styles.day}>
+      <span>{day}</span> {month}
+    </div>
     <div className={`${styles.dayName} ${isWeekend ? styles.isWeekend : ''}`}>
       {dayName}
     </div>
