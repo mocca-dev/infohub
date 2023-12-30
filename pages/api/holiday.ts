@@ -29,17 +29,17 @@ const DayName = [
 
 const getDayNumber = (date: string) => {
   const now = new Date();
-  const fullDate = new Date(`${now.getFullYear()}-${date}`);
-  return fullDate.getDay();
+  const dateMonth = date.split('-')[1];
+  if (now.getMonth() === 11 && dateMonth !== '11') {
+    return new Date(`${now.getFullYear() + 1}-${date}`).getDay();
+  } else {
+    return new Date(`${now.getFullYear()}-${date}`).getDay();
+  }
 };
 
 const isWeekend = (date: string) => {
   const day = getDayNumber(date);
-  if (day === 0 || day === 6) {
-    return true;
-  } else {
-    return false;
-  }
+  return day === 0 || day === 6;
 };
 
 const getDayName = (date: string) => DayName[getDayNumber(date)];
