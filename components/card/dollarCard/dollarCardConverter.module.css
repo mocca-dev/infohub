@@ -11,6 +11,7 @@
   border: none;
   background: #2c2e33;
   width: 50%;
+  font-size: 1rem;
   padding: 5px 10px;
   margin-right: 7px;
   border-radius: 6px;
@@ -19,9 +20,11 @@
 
 .btn {
   padding: 5px 12px;
+  font-size: 1rem;
   gap: 5px;
   border: none;
   background: grey;
+  color: white;
   border-radius: 5px;
   margin-top: 10px;
 }

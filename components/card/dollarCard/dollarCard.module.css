@@ -51,9 +51,11 @@
 
 .btn {
   display: flex;
-  padding: 5px 12px;
+  padding: 5px 8px;
+  font-size: 1rem;
   gap: 5px;
   border: none;
   background: grey;
+  color: white;
   border-radius: 5px;
 }
