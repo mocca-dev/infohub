@@ -1,7 +1,7 @@
 .blueValue {
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 0px;
   font-weight: 300;
   font-size: 5rem;
 }
@@ -41,4 +41,19 @@
 .red svg {
   fill: red;
   transform: rotate(180deg);
+}
+
+.buttonBar {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 6px;
+}
+
+.btn {
+  display: flex;
+  padding: 5px 12px;
+  gap: 5px;
+  border: none;
+  background: grey;
+  border-radius: 5px;
 }

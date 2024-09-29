@@ -1,0 +1,27 @@
+.container {
+  padding-top: 20px;
+}
+
+.container label {
+  display: block;
+  margin: 10px 0;
+}
+
+.container input {
+  border: none;
+  background: #2c2e33;
+  width: 50%;
+  padding: 5px 10px;
+  margin-right: 7px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.btn {
+  padding: 5px 12px;
+  gap: 5px;
+  border: none;
+  background: grey;
+  border-radius: 5px;
+  margin-top: 10px;
+}

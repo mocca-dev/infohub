@@ -17,6 +17,7 @@ import { useState } from 'react';
 
 const Home = () => {
   const [showToast, setShowToast] = useState(false);
+  const [toastText, setToastText] = useState('');
   const [dollarCard, isDollarLoading, refreshDollar] = useFetch<DollarCardData>(
     '/api/dollar',
     300
@@ -39,12 +40,18 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Toast
-        text="Copiado!"
+        text={toastText}
         show={showToast}
         resetShow={() => setShowToast(false)}
       />
       <main className={styles.main}>
-        <Header onShareSucces={setShowToast} weather={weatherCard} />
+        <Header
+          onShareSucces={() => {
+            setToastText('Copiado!');
+            setShowToast(true);
+          }}
+          weather={weatherCard}
+        />
         <div className={styles.cardContainer}>
           <Card
             data={{
@@ -55,9 +62,15 @@ const Home = () => {
             refresh={refreshDollar}
           >
             <DollarCard
-              value={dollarCard?.data?.value}
-              official={dollarCard?.data?.official}
-              mep={dollarCard?.data?.mep}
+              onCopied={(text: string) => {
+                setToastText(text);
+                setShowToast(true);
+              }}
+              data={{
+                value: dollarCard?.data?.value,
+                official: dollarCard?.data?.official,
+                mep: dollarCard?.data?.mep,
+              }}
             />
           </Card>
           <Card

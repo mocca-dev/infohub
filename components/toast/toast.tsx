@@ -15,7 +15,7 @@ const Toast: FunctionComponent<Props> = ({ text, show, resetShow }) => {
     setTimeout(() => {
       setInnerShow(false);
       resetShow(false);
-    }, 4000);
+    }, 5000);
   }, [show, resetShow]);
 
   return (
