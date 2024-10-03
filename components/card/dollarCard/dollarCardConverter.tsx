@@ -12,39 +12,53 @@ const DollarCardConverter: FunctionComponent<Props> = ({ onToggle, value }) => {
 
   return (
     <div className={styles.container}>
-      <form action="">
+      <form>
         <label htmlFor="first">
           <input
             name="first"
-            type="text"
+            type="number"
             value={firstValue}
             onChange={(e) => {
-              setFirstValue(e.target.value);
+              let targetValue = e.target.value;
+              if (e.target.value === '') {
+                setFirstValue('1');
+                targetValue = '1';
+              } else {
+                setFirstValue(e.target.value);
+              }
               setSecondValue(
                 (
-                  parseInt(e.target.value) * parseInt(value.replace('$', ''))
+                  parseInt(targetValue) * parseInt(value.replace('$', ''))
                 ).toString()
               );
             }}
           />
           USD
         </label>
-        <label htmlFor="second">
-          <input
-            name="second"
-            type="text"
-            value={secondValue}
-            onChange={(e) => {
-              setSecondValue(e.target.value);
-              setFirstValue(
-                (
-                  parseInt(e.target.value) / parseInt(value.replace('$', ''))
-                ).toString()
-              );
-            }}
-          />
-          ARS
-        </label>
+        <div>
+          <label htmlFor="second">
+            <input
+              name="second"
+              type="number"
+              value={secondValue}
+              onChange={(e) => {
+                let targetValue = e.target.value;
+                if (e.target.value === '') {
+                  setSecondValue('1');
+                  targetValue = '1';
+                } else {
+                  setSecondValue(e.target.value);
+                }
+                setFirstValue(
+                  (
+                    parseInt(targetValue) / parseInt(value.replace('$', ''))
+                  ).toString()
+                );
+              }}
+            />
+            ARS
+          </label>
+        </div>
       </form>
       <button className={styles.btn} onClick={onToggle}>
         Volver a la cotización
