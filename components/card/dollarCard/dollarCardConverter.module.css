@@ -10,6 +10,7 @@
 .container input {
   border: none;
   background: #2c2e33;
+  color: white;
   width: 50%;
   font-size: 1rem;
   padding: 5px 10px;
