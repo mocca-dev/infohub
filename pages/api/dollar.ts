@@ -31,10 +31,13 @@ const handler = async (
     .querySelector('.val')
     .innerHTML.toString();
 
-  const dolarBlueUpdateDate = dolarBlueTile
-    .querySelector('.tile.update')
-    .querySelector('span')
-    .innerHTML.toString();
+  const dolarBlueUpdateDate =
+    'Actualizado por última vez: ' +
+    dolarBlueTile
+      .querySelector('.tile.update')
+      .querySelector('span')
+      .innerHTML.toString()
+      .split(': ')[1];
 
   const officialValue = await getDollarValueFromEmbedded(
     'https://dolarhoy.com/i/cotizaciones/dolar-bancos-y-casas-de-cambio'

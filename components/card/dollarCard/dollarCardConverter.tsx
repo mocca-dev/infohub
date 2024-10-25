@@ -7,8 +7,8 @@ type Props = {
 };
 
 const DollarCardConverter: FunctionComponent<Props> = ({ onToggle, value }) => {
-  const [firstValue, setFirstValue] = useState('1');
-  const [secondValue, setSecondValue] = useState(value.replace('$', ''));
+  const [firstValue, setFirstValue] = useState('');
+  const [secondValue, setSecondValue] = useState('');
 
   return (
     <div className={styles.container}>
@@ -17,15 +17,11 @@ const DollarCardConverter: FunctionComponent<Props> = ({ onToggle, value }) => {
           <input
             name="first"
             type="number"
+            placeholder="1"
             value={firstValue}
             onChange={(e) => {
               let targetValue = e.target.value;
-              if (e.target.value === '') {
-                setFirstValue('1');
-                targetValue = '1';
-              } else {
-                setFirstValue(e.target.value);
-              }
+              setFirstValue(targetValue);
               setSecondValue(
                 (
                   parseInt(targetValue) * parseInt(value.replace('$', ''))
@@ -40,15 +36,11 @@ const DollarCardConverter: FunctionComponent<Props> = ({ onToggle, value }) => {
             <input
               name="second"
               type="number"
+              placeholder={value.replace('$', '')}
               value={secondValue}
               onChange={(e) => {
                 let targetValue = e.target.value;
-                if (e.target.value === '') {
-                  setSecondValue('1');
-                  targetValue = '1';
-                } else {
-                  setSecondValue(e.target.value);
-                }
+                setSecondValue(targetValue);
                 setFirstValue(
                   (
                     parseInt(targetValue) / parseInt(value.replace('$', ''))
