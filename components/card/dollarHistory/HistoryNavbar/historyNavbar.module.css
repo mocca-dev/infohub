@@ -1,0 +1,6 @@
+.nav {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}

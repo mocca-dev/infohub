@@ -8,6 +8,7 @@ type Props = {
   data: CardShellData;
   refresh: any;
   isLoading: boolean;
+  isBig?: boolean;
 };
 
 const Card: FunctionComponent<Props> = ({
@@ -15,8 +16,9 @@ const Card: FunctionComponent<Props> = ({
   data,
   refresh,
   isLoading,
+  isBig = false,
 }) => (
-  <div className={styles.card}>
+  <div className={isBig ? styles.bigCard : styles.card}>
     <div className={styles.cardHeader}>
       <div className={styles.cardTitle}>{data.title}</div>
       <button onClick={refresh} className={styles.refreshBtn}>

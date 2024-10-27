@@ -13,7 +13,7 @@ const handler = async (
     .slice(0, 10)
     .sort(
       (a: NewsItem, b: NewsItem) =>
-        new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+        new Date(b.published).getTime() - new Date(a.published).getTime()
     );
 
   res.status(200).json({

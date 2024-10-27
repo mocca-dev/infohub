@@ -1,0 +1,8 @@
+.navPadding {
+  padding: 5px 15px;
+}
+
+.isActive {
+  color: black;
+  background-color: rgb(243, 204, 0);
+}

@@ -18,9 +18,8 @@ export type HolidayData = {
 export type NewsItem = {
   description: string;
   link: string;
-  pubDate: string;
-  guid: { text: string; isPermaLink: string };
-  source: { text: string; url: string };
+  published: string;
+  id: string;
   title: string;
 };
 

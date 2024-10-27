@@ -4,7 +4,8 @@ import Card from '@/components/card/card';
 import DollarCard from '@/components/card/dollarCard/dollarCard';
 import HolidayCard from '@/components/card/holidayCard/holidayCard';
 import Header from '@/components/header/header';
-import BigCard from '@/components/bigCard/bigCard';
+// import BigCard from '@/components/bigCard/bigCard';
+
 import {
   DollarCardData,
   GNewsCardData,
@@ -14,6 +15,7 @@ import {
 import useFetch from '@/hooks/useFetch';
 import Toast from '@/components/toast/toast';
 import { useState } from 'react';
+import DollarHistory from '@/components/card/dollarHistory/dollarHistory';
 
 const Home = () => {
   const [showToast, setShowToast] = useState(false);
@@ -22,10 +24,11 @@ const Home = () => {
     '/api/dollar',
     300
   );
+
   const [holiDayCard, isHolidayLoading, refreshHoliday] =
     useFetch<HolidayCardData>('/api/holiday');
-  const [gNewsCard, isGNewsLoading, refreshGNews] =
-    useFetch<GNewsCardData>('/api/googleNews');
+  // const [gNewsCard, isGNewsLoading, refreshGNews] =
+  //   useFetch<GNewsCardData>('/api/googleNews');
   const [weatherCard] = useFetch<WeatherCardData>('/api/weather', 900);
 
   return (
@@ -90,12 +93,13 @@ const Home = () => {
               dayName={holiDayCard?.data.dayName}
             />
           </Card>
-          <BigCard
+          <DollarHistory />
+          {/* <BigCard
             card={gNewsCard}
             refresh={refreshGNews}
             isLoading={isGNewsLoading}
             onShareSucces={setShowToast}
-          ></BigCard>
+          ></BigCard> */}
         </div>
       </main>
     </>
