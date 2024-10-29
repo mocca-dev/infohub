@@ -37,7 +37,7 @@ export type CardData = {
   id: number;
   title: string;
   footer: string;
-  data: DollarData | HolidayData | GNewsData | WeatherData;
+  data: DollarData | HolidayData | GNewsData | WeatherData | HistoryDay[];
 };
 
 export type CardShellData = {
@@ -48,4 +48,12 @@ export type CardShellData = {
 export type Option = {
   label: string;
   action: MouseEventHandler<HTMLButtonElement>;
+};
+
+export type HistoryDay = {
+  moneda: string;
+  casa: string;
+  fecha: string;
+  compra: number;
+  venta: number;
 };

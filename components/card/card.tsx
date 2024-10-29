@@ -6,7 +6,7 @@ import { CardShellData } from '@/types/types';
 type Props = {
   children: ReactElement;
   data: CardShellData;
-  refresh: any;
+  refresh: (event: React.MouseEvent) => void;
   isLoading: boolean;
   isBig?: boolean;
 };

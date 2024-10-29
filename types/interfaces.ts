@@ -4,10 +4,15 @@ import {
   HolidayData,
   GNewsData,
   WeatherData,
+  HistoryDay,
 } from './types';
 
 export interface DollarCardData extends CardData {
   data: DollarData;
+}
+
+export interface DollarHistoyCardData extends CardData {
+  data: HistoryDay[];
 }
 
 export interface HolidayCardData extends CardData {
