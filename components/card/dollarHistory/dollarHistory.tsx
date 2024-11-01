@@ -8,7 +8,7 @@ import { DollarHistoyCardData } from '@/types/interfaces';
 
 const DollarHistory = () => {
   const [dollarHistoryCard, isDollarHistoryLoading, refreshDollarHistory] =
-    useFetch<DollarHistoyCardData>('/api/dollarHistory', 300);
+    useFetch<DollarHistoyCardData>('/api/dollarHistory');
   const [dollarHistoryList, setDollarHistoryList] = useState([]);
   const [minValue, setMinValue] = useState(0);
   const [selected, setSelected] = useState(0);
