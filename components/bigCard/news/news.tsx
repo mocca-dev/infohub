@@ -13,7 +13,7 @@ type Props = {
 };
 
 const News: FunctionComponent<Props> = ({ news, onShareSucces }) => {
-  const { link, published, title } = news;
+  const { link, pubDate, title, source } = news;
   const onShareCopy = useShareCopy(link, onShareSucces);
   const [time, setTime] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ const News: FunctionComponent<Props> = ({ news, onShareSucces }) => {
   ];
 
   useEffect(() => {
-    const pub = new Date(published);
+    const pub = new Date(pubDate);
     const now = new Date();
     const res = now.getTime() - pub.getTime();
     const time = Math.floor(res / 1000 / 60 / 60);
@@ -51,15 +51,15 @@ const News: FunctionComponent<Props> = ({ news, onShareSucces }) => {
       />
       <div className={styles.source}>
         <img
-          src={'/favicon.ico'}
+          src={source.url + '/favicon.ico'}
           alt="Icono de la fuente de la noticia."
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
             currentTarget.className = styles.hidden;
           }}
         />
-        <Link href={link} rel="noopener noreferrer" target="_blank">
-          nada
+        <Link href={source.url} rel="noopener noreferrer" target="_blank">
+          {source.text}
         </Link>
       </div>
       <button className={styles.btnText} onClick={() => setIsOpen(true)}>

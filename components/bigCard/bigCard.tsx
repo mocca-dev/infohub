@@ -31,7 +31,11 @@ const BigCard: FunctionComponent<Props> = ({
       ) : (
         <>
           {card?.data.value?.items.map((news: NewsItem) => (
-            <News key={news.id} news={news} onShareSucces={onShareSucces} />
+            <News
+              key={news.guid.text}
+              news={news}
+              onShareSucces={onShareSucces}
+            />
           ))}
         </>
       )}

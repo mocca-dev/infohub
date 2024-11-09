@@ -21,11 +21,22 @@ export type HolidayData = {
 };
 
 export type NewsItem = {
-  description: string;
-  link: string;
-  published: string;
-  id: string;
   title: string;
+  link: string;
+  guid: Guid;
+  pubDate: string;
+  description: string;
+  source: Source;
+};
+
+type Source = {
+  text: string;
+  url: string;
+};
+
+type Guid = {
+  text: string;
+  isPermaLink: string;
 };
 
 export type WeatherData = {
