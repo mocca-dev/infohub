@@ -1,31 +1,31 @@
-.day {
-  margin-top: 20px;
-  font-weight: 300;
-  font-size: 2.5rem;
-  color: #fff37d;
-  margin-bottom: 8px;
+.holidayContainer {
+  position: relative;
+  left: -68px;
+  width: 160%;
+  height: 208px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.day span {
-  font-size: 3.5rem;
+.holidayContainer button {
+  cursor: pointer;
+  display: flex;
+  z-index: 1;
+  position: absolute;
+  font-size: 20px;
+  height: 70%;
+  padding-top: 10px;
+  background: none;
+  border: none;
 }
 
-.left,
-.dayName,
-.reason {
-  opacity: 0.8;
+.leftArrow {
+  left: 50px;
+  transform: rotate(270deg);
 }
 
-.dayName {
-  color: #00d22e;
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-.isWeekend {
-  color: red;
-}
-
-.reason {
-  margin-bottom: 10px;
+.rightArrow {
+  right: 50px;
+  transform: rotate(90deg);
 }

@@ -84,14 +84,7 @@ const Home = () => {
             isLoading={isHolidayLoading}
             refresh={refreshHoliday}
           >
-            <HolidayCard
-              day={holiDayCard?.data.day}
-              month={holiDayCard?.data.month}
-              reason={holiDayCard?.data.reason}
-              left={holiDayCard?.data.left}
-              isWeekend={holiDayCard?.data.isWeekend}
-              dayName={holiDayCard?.data.dayName}
-            />
+            <HolidayCard days={holiDayCard?.data?.days} />
           </Card>
           <DollarHistory />
           {/* <BigCard

@@ -1,0 +1,36 @@
+.day {
+  font-weight: 300;
+  font-size: 2.5rem;
+  color: #fff37d;
+  margin-bottom: 8px;
+}
+
+.day div {
+  line-height: 3rem;
+  font-size: 3.5rem;
+}
+
+.pastHoliday {
+  opacity: 0.5;
+}
+
+.left,
+.dayName,
+.reason {
+  opacity: 0.8;
+}
+
+.dayName {
+  color: #00d22e;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.isWeekend {
+  color: red;
+}
+
+.reason {
+  height: 34px;
+  padding: 0 62px;
+}

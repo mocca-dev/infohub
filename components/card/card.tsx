@@ -30,7 +30,9 @@ const Card: FunctionComponent<Props> = ({
     ) : (
       <>{children}</>
     )}
-    <div className={styles.cardFooter}>{data.footer}</div>
+    {data.footer ? (
+      <div className={styles.cardFooter}>{data.footer}</div>
+    ) : null}
   </div>
 );
 

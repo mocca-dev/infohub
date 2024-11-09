@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { HolidayCardData } from '@/types/interfaces';
+import { HistoryDay, Holiday, HolidayListData } from '@/types/types';
 
 enum MonthNumber {
   Enero = 1,
@@ -44,10 +45,7 @@ const isWeekend = (date: string) => {
 
 const getDayName = (date: string) => DayName[getDayNumber(date)];
 
-const handler = async (
-  req: NextApiRequest,
-  res: NextApiResponse<HolidayCardData>
-) => {
+const getLaNacionHolliday = async () => {
   const HTMLParser = require('node-html-parser');
   let holiday;
   try {
@@ -74,18 +72,59 @@ const handler = async (
     .querySelector('.com-text.--s')
     .innerHTML.toString();
 
+  return {
+    day: holidayNumber,
+    month: holidayMonth,
+    left: holidayLeft,
+    reason: holidayReason,
+    isWeekend: isWeekend(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
+    dayName: getDayName(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
+  };
+};
+
+const getArgentinaDatosHolliday = async () => {
+  const resp = await fetch('https://api.argentinadatos.com/v1/feriados/2024');
+  const data: Holiday[] = await resp.json();
+
+  const today = Date.now();
+  const days = data.map((day: Holiday) => {
+    const dayInMilliseconds = new Date(day.fecha).getTime();
+
+    const nextDate = new Date(day.fecha).getTime();
+    const diffTime = Math.abs(today - nextDate);
+    const left =
+      'Faltan ' +
+      (Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1).toString() +
+      ' días';
+    const nextHolidaySplitted = day.fecha.split('-');
+    const month = MonthNumber[parseInt(nextHolidaySplitted[1])];
+    const nextDay: string = parseInt(nextHolidaySplitted[2]).toString();
+
+    return {
+      day: nextDay,
+      month,
+      left,
+      reason: day.nombre,
+      isWeekend: isWeekend(
+        `${nextHolidaySplitted[1]}-${parseInt(nextDay) + 1}`
+      ),
+      dayName: getDayName(`${nextHolidaySplitted[1]}-${parseInt(nextDay) + 1}`),
+      isNextHoliday: dayInMilliseconds > today,
+    };
+  });
+  return { days };
+};
+
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<HolidayCardData>
+) => {
+  const data = await getArgentinaDatosHolliday();
   res.status(200).json({
     id: 1,
-    title: 'Próximo Feriado',
+    title: 'Feriados',
     footer: '',
-    data: {
-      day: holidayNumber,
-      month: holidayMonth,
-      left: holidayLeft,
-      reason: holidayReason,
-      isWeekend: isWeekend(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
-      dayName: getDayName(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
-    },
+    data: data,
   });
 };
 

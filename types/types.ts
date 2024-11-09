@@ -6,6 +6,10 @@ export type DollarData = {
   mep: string | undefined;
 };
 
+export type HolidayListData = {
+  days: HolidayData[];
+};
+
 export type HolidayData = {
   day: string | undefined;
   month: string | undefined;
@@ -13,6 +17,7 @@ export type HolidayData = {
   reason: string | undefined;
   isWeekend: boolean | undefined;
   dayName: string | undefined;
+  isNextHoliday: boolean;
 };
 
 export type NewsItem = {
@@ -37,7 +42,7 @@ export type CardData = {
   id: number;
   title: string;
   footer: string;
-  data: DollarData | HolidayData | GNewsData | WeatherData | HistoryDay[];
+  data: DollarData | HolidayListData | GNewsData | WeatherData | HistoryDay[];
 };
 
 export type CardShellData = {
@@ -56,4 +61,10 @@ export type HistoryDay = {
   fecha: string;
   compra: number;
   venta: number;
+};
+
+export type Holiday = {
+  nombre: string;
+  fecha: string;
+  tipo: string;
 };

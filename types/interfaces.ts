@@ -1,10 +1,10 @@
 import {
   CardData,
   DollarData,
-  HolidayData,
   GNewsData,
   WeatherData,
   HistoryDay,
+  HolidayListData,
 } from './types';
 
 export interface DollarCardData extends CardData {
@@ -16,7 +16,7 @@ export interface DollarHistoyCardData extends CardData {
 }
 
 export interface HolidayCardData extends CardData {
-  data: HolidayData;
+  data: HolidayListData;
 }
 
 export interface GNewsCardData extends CardData {
