@@ -14,15 +14,19 @@ const DollarHistory = () => {
   const [selected, setSelected] = useState(0);
 
   useEffect(() => {
+    const rangeFromLocalStorage =
+      localStorage.getItem('range') || selected.toString();
+    const range = parseInt(rangeFromLocalStorage);
     const history = dollarHistoryCard?.data;
     setDollarHistoryList(history);
-    if (history)
-      setMinValue(Math.min(...history.map((dollar: any) => dollar[1])) - 5);
+    if (history) changeRange(range, history);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dollarHistoryCard]);
 
-  const changeRange = (range: number) => {
+  const changeRange = (range: number, updatedHistory?) => {
     setSelected(range);
-    const history = dollarHistoryCard?.data;
+    localStorage.setItem('range', range.toString());
+    const history = updatedHistory ? updatedHistory : dollarHistoryCard?.data;
     const slicedHistory = history.slice(-range, history.length);
     setDollarHistoryList(slicedHistory);
     setMinValue(Math.min(...slicedHistory.map((dollar: any) => dollar[1])) - 5);
