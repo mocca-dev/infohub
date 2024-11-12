@@ -105,10 +105,8 @@ const getArgentinaDatosHolliday = async () => {
       month,
       left,
       reason: day.nombre,
-      isWeekend: isWeekend(
-        `${nextHolidaySplitted[1]}-${parseInt(nextDay) + 1}`
-      ),
-      dayName: getDayName(`${nextHolidaySplitted[1]}-${parseInt(nextDay) + 1}`),
+      isWeekend: isWeekend(`${nextHolidaySplitted[1]}-${parseInt(nextDay)}`),
+      dayName: getDayName(`${nextHolidaySplitted[1]}-${parseInt(nextDay)}`),
       isNextHoliday: dayInMilliseconds > today,
     };
   });
