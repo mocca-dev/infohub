@@ -1,7 +1,6 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { HolidayCardData } from '@/types/interfaces';
-import { HistoryDay, Holiday, HolidayListData } from '@/types/types';
+import { Holiday } from '@/types/types';
 
 enum MonthNumber {
   Enero = 1,
@@ -18,69 +17,27 @@ enum MonthNumber {
   Diciembre = 12,
 }
 
-const DayName = [
-  'Domingo',
-  'Lunes',
-  'Martes',
-  'Miércoles',
-  'Jueves',
-  'Viernes',
-  'Sábado',
-];
-
-const getDayNumber = (date: string) => {
-  const now = new Date();
-  const dateMonth = date.split('-')[1];
-  if (now.getMonth() === 11 && dateMonth !== '11') {
-    return new Date(`${now.getFullYear() + 1}-${date}`).getDay();
-  } else {
-    return new Date(`${now.getFullYear()}-${date}`).getDay();
-  }
-};
-
 const isWeekend = (date: string) => {
-  const day = getDayNumber(date);
+  const day = new Date(date).getDay();
   return day === 0 || day === 6;
 };
 
-const getDayName = (date: string) => DayName[getDayNumber(date)];
+function getWeekDayBasedInArgentina(dateString: string) {
+  const splittedDate = dateString.split('-');
+  let year = parseInt(splittedDate[0]),
+    month = parseInt(splittedDate[1]),
+    day = parseInt(splittedDate[2]);
 
-const getLaNacionHolliday = async () => {
-  const HTMLParser = require('node-html-parser');
-  let holiday;
-  try {
-    const holidayResp = await fetch('https://www.lanacion.com.ar/feriados/');
-    holiday = await holidayResp.text();
-  } catch (error) {
-    console.error('ERROR', error);
-  }
+  const date = new Date(Date.UTC(year, month - 1, day + 1));
+  const options = { timeZone: 'America/Argentina/Buenos_Aires' };
 
-  const holidayRoot = HTMLParser.parse(holiday);
-  const holidayNumber = holidayRoot
-    .querySelector('.com-text.sueca.--font-bold.--threexl')
-    .innerHTML.toString();
-  const holidayLeft = holidayRoot
-    .querySelector('.com-text.--l')
-    .innerHTML.toString()
-    .replace('<strong>', '')
-    .replace('</strong>', '')
-    .replace(' para el próximo feriado', '');
-  const holidayMonth = holidayRoot
-    .querySelector('.com-text.--font-bold.--m')
-    .innerHTML.toString();
-  const holidayReason = holidayRoot
-    .querySelector('.com-text.--s')
-    .innerHTML.toString();
+  const formatter = new Intl.DateTimeFormat('es-AR', {
+    ...options,
+    weekday: 'long',
+  });
 
-  return {
-    day: holidayNumber,
-    month: holidayMonth,
-    left: holidayLeft,
-    reason: holidayReason,
-    isWeekend: isWeekend(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
-    dayName: getDayName(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
-  };
-};
+  return formatter.format(date);
+}
 
 const getArgentinaDatosHolliday = async () => {
   const resp = await fetch('https://api.argentinadatos.com/v1/feriados/2024');
@@ -105,8 +62,8 @@ const getArgentinaDatosHolliday = async () => {
       month,
       left,
       reason: day.nombre,
-      isWeekend: isWeekend(`${nextHolidaySplitted[1]}-${parseInt(nextDay)}`),
-      dayName: getDayName(`${nextHolidaySplitted[1]}-${parseInt(nextDay)}`),
+      isWeekend: isWeekend(day.fecha),
+      dayName: getWeekDayBasedInArgentina(day.fecha),
       isNextHoliday: dayInMilliseconds > today,
     };
   });
@@ -127,3 +84,50 @@ const handler = async (
 };
 
 export default handler;
+
+// enum DaysOfWeek {
+//   Monday = 'Lunes',
+//   Tuesday = 'Martes',
+//   Wednesday = 'Miércoles',
+//   Thursday = 'Jueves',
+//   Friday = 'Viernes',
+//   Saturday = 'Sábado',
+//   Sunday = 'Domingo',
+// }
+
+// const getLaNacionHolliday = async () => {
+//   const HTMLParser = require('node-html-parser');
+//   let holiday;
+//   try {
+//     const holidayResp = await fetch('https://www.lanacion.com.ar/feriados/');
+//     holiday = await holidayResp.text();
+//   } catch (error) {
+//     console.error('ERROR', error);
+//   }
+
+//   const holidayRoot = HTMLParser.parse(holiday);
+//   const holidayNumber = holidayRoot
+//     .querySelector('.com-text.sueca.--font-bold.--threexl')
+//     .innerHTML.toString();
+//   const holidayLeft = holidayRoot
+//     .querySelector('.com-text.--l')
+//     .innerHTML.toString()
+//     .replace('<strong>', '')
+//     .replace('</strong>', '')
+//     .replace(' para el próximo feriado', '');
+//   const holidayMonth = holidayRoot
+//     .querySelector('.com-text.--font-bold.--m')
+//     .innerHTML.toString();
+//   const holidayReason = holidayRoot
+//     .querySelector('.com-text.--s')
+//     .innerHTML.toString();
+
+//   return {
+//     day: holidayNumber,
+//     month: holidayMonth,
+//     left: holidayLeft,
+//     reason: holidayReason,
+//     isWeekend: isWeekend(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
+//     dayName: getDayName(`${MonthNumber[holidayMonth]}-${holidayNumber}`),
+//   };
+// };
