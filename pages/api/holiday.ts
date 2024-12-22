@@ -40,7 +40,9 @@ function getWeekDayBasedInArgentina(dateString: string) {
 }
 
 const getArgentinaDatosHolliday = async () => {
-  const resp = await fetch('https://api.argentinadatos.com/v1/feriados/2024');
+  const resp = await fetch(
+    'https://api.argentinadatos.com/v1/feriados/' + new Date().getFullYear()
+  );
   const data: Holiday[] = await resp.json();
 
   const today = Date.now();
