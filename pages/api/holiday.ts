@@ -19,7 +19,7 @@ enum MonthNumber {
 
 const isWeekend = (date: string) => {
   const day = new Date(date).getDay();
-  return day === 0 || day === 6;
+  return day >= 5;
 };
 
 function getWeekDayBasedInArgentina(dateString: string) {
@@ -40,8 +40,13 @@ function getWeekDayBasedInArgentina(dateString: string) {
 }
 
 const getArgentinaDatosHolliday = async () => {
+  const date = new Date();
+  let apiYear = date.getFullYear();
+
+  if (date.getMonth() + 1 === 12 && date.getDate() > 25) apiYear++;
+
   const resp = await fetch(
-    'https://api.argentinadatos.com/v1/feriados/' + new Date().getFullYear()
+    'https://api.argentinadatos.com/v1/feriados/' + apiYear
   );
   const data: Holiday[] = await resp.json();
 
