@@ -14,6 +14,7 @@
     "@types/react-dom": "18.0.11",
     "@vercel/analytics": "1.0.0",
     "chart.js": "4.4.5",
+    "date-fns": "4.1.0",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "google-news-json": "2.1.0",
